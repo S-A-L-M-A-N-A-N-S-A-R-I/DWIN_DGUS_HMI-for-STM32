@@ -21,14 +21,11 @@ Download the Library and extract the folder in the libraries of Arduino IDE
 
 #### Initialize the hmi Object with Rx | Tx Pins and Baud rate
 ```C++
-// If Using ESP32 Or Arduino Mega 
-#if defined(ESP32)
-  #define DGUS_SERIAL Serial2
-  DWIN hmi(DGUS_SERIAL, 16, 17, DGUS_BAUD); // 16 Rx Pin | 17 Tx Pin
-// If Using Arduino Uno
-#else
-  DWIN hmi(2, 3, DGUS_BAUD);    // 2 Rx Pin | 3 Tx Pin
-#endif
+HardwareSerial dwinSerial(PA3, PA2);
+
+#define DGUS_BAUD     115200
+
+  DWIN hmi(dwinSerial, DGUS_BAUD);
 ```
 
 #### Define callback Function
